@@ -4,6 +4,11 @@
 
     "html.suggest.angular1": true,
     "html.suggest.ionic": true,
-    "html.suggest.html5": true
+    "html.suggest.html5": true,
+    "emmet.triggerExpansionOnTab": true,
+    "emmet.excludeLanguages": [
+
+        "markdown"
+    ]
 
 }
