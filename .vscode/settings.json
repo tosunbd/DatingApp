@@ -1,3 +1,9 @@
 {
-    "editor.quickSuggestions": true
+    "editor.quickSuggestions": true,
+    "html.format.contentUnformatted": "",
+
+    "html.suggest.angular1": true,
+    "html.suggest.ionic": true,
+    "html.suggest.html5": true
+
 }

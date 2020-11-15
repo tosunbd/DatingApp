@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "update": "^0.4.2"
+  },
+  "name": "DatingApp"
+}
