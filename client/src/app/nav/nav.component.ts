@@ -8,6 +8,7 @@ import { AccountService } from '../_services/account.service';
 })
 export class NavComponent implements OnInit {
   model: any = {}
+  loggedIn: boolean;
 
   constructor(private accountService: AccountService) { }
 
@@ -15,8 +16,19 @@ export class NavComponent implements OnInit {
   }
 
   // tslint:disable-next-line:typedef
-  login(){
-    this.accountService.login(this.model)
+  login() {
+    this.accountService.login(this.model).subscribe(response => {
+      console.log(response);
+      this.loggedIn = true;
+    // tslint:disable-next-line:no-shadowed-variable
+    }, error => {
+      console.log(error);
+    });
+  }
+
+  // tslint:disable-next-line:typedef
+  logout() {
+    this.loggedIn = false;
   }
 
 }
