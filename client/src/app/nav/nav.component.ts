@@ -7,10 +7,9 @@ import { AccountService } from '../_services/account.service';
   styleUrls: ['./nav.component.css']
 })
 export class NavComponent implements OnInit {
-  model: any = {}
-  loggedIn: boolean;
-
-  constructor(private accountService: AccountService) { }
+  model: any = {};
+  
+  constructor(public accountService: AccountService) { }
 
   ngOnInit(): void {
   }
@@ -19,7 +18,6 @@ export class NavComponent implements OnInit {
   login() {
     this.accountService.login(this.model).subscribe(response => {
       console.log(response);
-      this.loggedIn = true;
     // tslint:disable-next-line:no-shadowed-variable
     }, error => {
       console.log(error);
@@ -28,7 +26,6 @@ export class NavComponent implements OnInit {
 
   // tslint:disable-next-line:typedef
   logout() {
-    this.loggedIn = false;
+    this.accountService.logout();
   }
-
 }
