@@ -12,6 +12,7 @@ namespace API
     public class Startup
     {
         private readonly IConfiguration _config;
+        private readonly string DatingAppSpecificOrigins = "_datingAppSpecificOrigins";
         public Startup(IConfiguration config)
         {
             _config = config;         
@@ -22,7 +23,19 @@ namespace API
         {
             services.AddApplicationServices(_config);
             services.AddControllers();
-            services.AddCors();
+            //services.AddCors();
+            services.AddCors(options =>
+            {
+                options.AddPolicy(DatingAppSpecificOrigins,
+                                builder =>
+                                {
+                                    builder.WithOrigins("http://localhost:4200",
+                                                        "https://localhost:4200")
+                                                        .AllowAnyHeader()
+                                                        .AllowAnyMethod();
+                                });
+            });          
+
             services.AddIdentityServices(_config);
             services.AddSwaggerGen(c =>
             {
@@ -47,7 +60,8 @@ namespace API
 
             app.UseRouting();
 
-            app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().WithOrigins("https://localhost:4200"));
+            //app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().WithOrigins("https://localhost:4200"));
+            app.UseCors(DatingAppSpecificOrigins);
 
             app.UseAuthentication();
 

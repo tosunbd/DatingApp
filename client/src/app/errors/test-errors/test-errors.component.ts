@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TestErrorsComponent implements OnInit {
   baseUrl = 'https://localhost:5001/api/';
+  validationErrors: string[] = [];
 
   constructor(private http: HttpClient) { }
 
@@ -16,7 +17,7 @@ export class TestErrorsComponent implements OnInit {
 
   // tslint:disable-next-line:typedef
   get400Error() {
-    this.http.get(this.baseUrl + 'buggy/not-request').subscribe(response => {
+    this.http.get(this.baseUrl + 'buggy/bad-request').subscribe(response => {
       console.log(response);
     }, error => {
       console.log(error);
@@ -47,6 +48,7 @@ export class TestErrorsComponent implements OnInit {
       console.log(response);
     }, error => {
       console.log(error);
+      this.validationErrors = error;
     });
   }
 
