@@ -23,18 +23,18 @@ namespace API
         {
             services.AddApplicationServices(_config);
             services.AddControllers();
-            //services.AddCors();
-            services.AddCors(options =>
-            {
-                options.AddPolicy(DatingAppSpecificOrigins,
-                                builder =>
-                                {
-                                    builder.WithOrigins("http://localhost:4200",
-                                                        "https://localhost:4200")
-                                                        .AllowAnyHeader()
-                                                        .AllowAnyMethod();
-                                });
-            });          
+            services.AddCors();
+            // services.AddCors(options =>
+            // {
+            //     options.AddPolicy(DatingAppSpecificOrigins,
+            //                     builder =>
+            //                     {
+            //                         builder.WithOrigins("http://localhost:4200",
+            //                                             "https://localhost:4200")
+            //                                             .AllowAnyHeader()
+            //                                             .AllowAnyMethod();
+            //                     });
+            // });          
 
             services.AddIdentityServices(_config);
             services.AddSwaggerGen(c =>
@@ -60,8 +60,8 @@ namespace API
 
             app.UseRouting();
 
-            //app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().WithOrigins("https://localhost:4200"));
-            app.UseCors(DatingAppSpecificOrigins);
+            app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().WithOrigins("https://localhost:4200"));
+            //app.UseCors(DatingAppSpecificOrigins);
 
             app.UseAuthentication();
 
