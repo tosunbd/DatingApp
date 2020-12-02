@@ -24,13 +24,13 @@ namespace API.Controllers
             _userRepository = userRepository; 
         }
         //api/users
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<MemberDto>>> GetUsers()
-        {
-            var users = await _userRepository.GetUsersAsync();
-            var usersToRetun = _mapper.Map<IEnumerable<MemberDto>>(users);
-            return Ok(usersToRetun);
-        }
+        // [HttpGet]
+        // public async Task<ActionResult<IEnumerable<MemberDto>>> GetUsers()
+        // {
+        //     var users = await _userRepository.GetUsersAsync();
+        //     var usersToRetun = _mapper.Map<IEnumerable<MemberDto>>(users);
+        //     return Ok(usersToRetun);
+        // }
 
         //api/users/3
         //[HttpGet("{id:int}")]
@@ -51,6 +51,13 @@ namespace API.Controllers
         //     var usersToRetun = _mapper.Map<MemberDto>(user);
         //     return usersToRetun;
         // }
+
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<MemberDto>>> GetMembersAsync()
+        {
+            var users = await _userRepository.GetMembersAsync();            
+            return Ok(users);
+        }
 
         //api/users/3
         //[HttpGet("{id:int}")]
