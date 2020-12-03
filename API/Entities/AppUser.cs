@@ -28,6 +28,6 @@ namespace API.Entities
         // }
 
         // Same as the above function
-        public int Age => DateOfBirth.CalculateAge();
+        // public int Age => DateOfBirth.CalculateAge();
     }
 }
