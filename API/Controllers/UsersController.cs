@@ -18,13 +18,15 @@ namespace API.Controllers
     {        
         private readonly IUserRepository _userRepository;
         private readonly IMapper _mapper;
+
         public UsersController(IUserRepository userRepository, IMapper mapper) 
         { 
             _mapper = mapper;
             _userRepository = userRepository; 
         }
+
         //api/users
-        // [HttpGet]
+        // [HttpGet(Name = "GetUsers")]
         // public async Task<ActionResult<IEnumerable<MemberDto>>> GetUsers()
         // {
         //     var users = await _userRepository.GetUsersAsync();
@@ -32,8 +34,7 @@ namespace API.Controllers
         //     return Ok(usersToRetun);
         // }
 
-        //api/users/3
-        //[HttpGet("{id:int}")]
+        //api/users/3        
         // [HttpGet("{id:int}", Name = "GetUserById")]
         // public async Task<ActionResult<MemberDto>> GetUserById(int id)
         // {
@@ -42,8 +43,8 @@ namespace API.Controllers
         //     return usersToRetun;
         // }
 
-        // //api/users/username
-        // //[HttpGet("username:alpha}")]
+        //api/users/username
+        //[HttpGet("username:alpha}")]
         // [HttpGet("{username:alpha}", Name = "GetUserByUserName")]
         // public async Task<ActionResult<MemberDto>> GetUserByUserName(string username)
         // {
@@ -53,9 +54,10 @@ namespace API.Controllers
         // }
 
         [HttpGet]
+        //[HttpGet(Name = "GetMembers")]
         public async Task<ActionResult<IEnumerable<MemberDto>>> GetMembersAsync()
         {
-            var users = await _userRepository.GetMembersAsync();            
+            var users = await _userRepository.GetMembersAsync();
             return Ok(users);
         }
 
@@ -68,7 +70,7 @@ namespace API.Controllers
         }
 
         //api/users/username
-        //[HttpGet("username:alpha}")]
+        //[HttpGet("{username:alpha}")]
         [HttpGet("{username:alpha}", Name = "GetMemberByUserName")]
         public async Task<ActionResult<MemberDto>> GetMemberByUserName(string username)
         {
